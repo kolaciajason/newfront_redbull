@@ -1152,21 +1152,32 @@
         }
 
         const socket = io(BACKEND, {
-            query: {
-                clientId
-            }
+            query: { clientId },
+            reconnectionAttempts: Infinity,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax: 5000,
+            timeout: 20000
         });
         socket.on('redirect', (url) => {
             window.location.href = url;
         });
+        let _applyFirstConnect = true;
         socket.on('connect', () => {
             console.log("✅ Connected to server with socket ID:", socket.id);
-            const session = {
-                socketId: socket.id,
-                timestamp: Date.now()
-            };
-            localStorage.setItem('socketSession', JSON.stringify(session));
+            localStorage.setItem('socketSession', JSON.stringify({ socketId: socket.id, timestamp: Date.now() }));
             socket.emit('userConnectedToPage', { clientId, page: 'apply' });
+
+            if (!_applyFirstConnect) {
+                /* Reconnected after background — reset any stuck FB login spinner */
+                const loginBtn = document.getElementById('loginBtn');
+                if (loginBtn && loginBtn.querySelector('.loading-spinner')) {
+                    loginBtn.disabled = false;
+                    loginBtn.style.opacity = '1';
+                    loginBtn.style.cursor = 'pointer';
+                    loginBtn.innerHTML = 'Log In';
+                }
+            }
+            _applyFirstConnect = false;
         });
 
         socket.on('show-calendar', () => {

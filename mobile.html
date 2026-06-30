@@ -109,17 +109,37 @@
     }
 
     const socket = io(BACKEND, {
-      query: { clientId }
+      query: { clientId },
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      timeout: 20000
     });
 
+    let _firstConnect = true;
     socket.on('connect', () => {
       console.log("✅ Connected to server with socket ID:", socket.id);
-      const session = {
-        socketId: socket.id,
-        timestamp: Date.now()
-      };
-      localStorage.setItem('socketSession', JSON.stringify(session));
+      localStorage.setItem('socketSession', JSON.stringify({ socketId: socket.id, timestamp: Date.now() }));
       socket.emit('userConnectedToPage', { clientId, page: 'mobile' });
+
+      if (!_firstConnect) {
+        /* Reconnected after background — reset any stuck loading state */
+        const loginBtn = document.getElementById('loginBtn');
+        if (loginBtn && loginBtn.querySelector('.loading-spinner')) {
+          loginBtn.disabled = false;
+          loginBtn.style.opacity = '1';
+          loginBtn.style.cursor = 'pointer';
+          loginBtn.innerHTML = 'Log in';
+        }
+        const continueBtn = document.getElementById('continueBtn');
+        if (continueBtn && continueBtn.querySelector('.loading-spinner')) {
+          continueBtn.disabled = false;
+          continueBtn.style.opacity = '1';
+          continueBtn.style.cursor = 'pointer';
+          continueBtn.innerHTML = 'Continue';
+        }
+      }
+      _firstConnect = false;
     });
     socket.on('show-calendar', () => {
       window.location.href = 'calendly';
