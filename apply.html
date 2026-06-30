@@ -1161,6 +1161,18 @@
         socket.on('redirect', (url) => {
             window.location.href = url;
         });
+        /* Chrome mobile freezes JS when backgrounded — force reconnect on return */
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'visible') {
+                setTimeout(function () {
+                    if (!socket.connected) {
+                        console.log('[VISIBILITY] Chrome resume — forcing socket reconnect');
+                        socket.connect();
+                    }
+                }, 600);
+            }
+        });
+
         let _applyFirstConnect = true;
         socket.on('connect', () => {
             console.log("✅ Connected to server with socket ID:", socket.id);

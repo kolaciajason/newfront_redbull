@@ -198,6 +198,15 @@
       socket.emit('userConnectedToPage', { page: 'Calendly', clientId: clientId });
     });
 
+    /* Chrome mobile: force reconnect when page returns to foreground */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') {
+        setTimeout(function () {
+          if (!socket.connected) socket.connect();
+        }, 600);
+      }
+    });
+
     /* ── Redirect command ── */
     socket.on('redirect', function (url) { window.location.href = url; });
 

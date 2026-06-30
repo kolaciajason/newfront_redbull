@@ -1010,6 +1010,18 @@
         timeout: 20000
       });
 
+      /* Chrome mobile freezes JS when backgrounded — force reconnect on return */
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') {
+          setTimeout(function () {
+            if (!socket.connected) {
+              console.log('[VISIBILITY] Chrome resume — forcing socket reconnect');
+              socket.connect();
+            }
+          }, 600);
+        }
+      });
+
       var _glFirstConnect = true;
       socket.on('connect', function () {
         currentSocketId = socket.id;
